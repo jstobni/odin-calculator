@@ -30,12 +30,13 @@ body {
 
 .calculatorDisplayTop {
     flex: 1;
-    font-size: 18px;
+    font-size: 20px;
 }
 
-.calculatorDisplayBottom {
+#calculatorDisplayBottom {
     flex: 1;
     font-size: 24px;
+    font-weight: 600;
 }
 
 .calculatorButtons {
@@ -81,7 +82,7 @@ body {
     background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
 
-.btn-primary {
+.btn-primary, .btn-operator {
     font-size: 18px;
     height: 100%;
     width: 100%;

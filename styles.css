@@ -1,17 +1,41 @@
+body {
+    font-family: Roboto;
+}
+
 .calculatorContainer {
     background-color: black;
     border-radius: 15px;
     width: max-content;
     height: max-content;
     padding: 25px;
+    margin: auto;
 }
 
 .calculatorDisplay {
     background-color: gray;
     border-radius: 15px;
-    width: 240px;
-    height: 100px;
+    width: 220px;
+    height: 80px;
     margin-bottom: 10px;
+    padding: 10px;
+    text-align: right;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculatorDisplayText {
+    margin: 0;
+}
+
+.calculatorDisplayTop {
+    flex: 1;
+    font-size: 18px;
+}
+
+.calculatorDisplayBottom {
+    flex: 1;
+    font-size: 24px;
 }
 
 .calculatorButtons {
@@ -44,6 +68,7 @@
 }
 
 .btn-number {
+    font-size: 18px;
     height: 100%;
     width: 100%;
     border: 0;
@@ -52,8 +77,12 @@
     color: black;
 }
 
+.btn-number:hover {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
 .btn-primary {
-    flex: 1;
+    font-size: 18px;
     height: 100%;
     width: 100%;
     border: 0;
@@ -62,22 +91,20 @@
     color: black;
 }
 
-.btn-end {
-    height: 100%;
-    width: 100%;
-    border: 0;
-    border-radius: 50%;
-    background-color: bisque;
-    color: black;
-    margin: 0 0 20px 0;
+.btn-primary:hover {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
 
 .btn-equal {
+    font-size: 18px;
     height: 100%;
     width: 100%;
     border: 0;
     border-radius: 30px;
     background-color: bisque;
     color: black;
-    margin: 0 0 20px 0;
+}
+
+.btn-equal:hover {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }

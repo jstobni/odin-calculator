@@ -52,10 +52,15 @@ function add(x, y) {
     let outputOperator = document.querySelector('#calculatorOperatorText');
     let outputNum2 = document.querySelector('#calculatorSecondNumText');
 
-    x = parseInt(x)
-    y = parseInt(y)
+    x = parseFloat(x)
+    y = parseFloat(y)
+    let value = x + y
     
-    outputNum1.innerHTML = `${x + y}`
+    if (Number.isInteger(value)) {
+        outputNum1.innerHTML = `${value}`
+    } else {
+        outputNum1.innerHTML = `${value.toFixed(5)}`
+    }
     outputOperator.innerHTML = ''
     outputNum2.innerHTML = ''
     
@@ -66,10 +71,15 @@ function subtract(x, y) {
     let outputOperator = document.querySelector('#calculatorOperatorText');
     let outputNum2 = document.querySelector('#calculatorSecondNumText');
 
-    x = parseInt(x)
-    y = parseInt(y)
+    x = parseFloat(x)
+    y = parseFloat(y)
+    let value = x - y
     
-    outputNum1.innerHTML = `${x - y}`
+    if (Number.isInteger(value)) {
+        outputNum1.innerHTML = `${value}`
+    } else {
+        outputNum1.innerHTML = `${value.toFixed(5)}`
+    }
     outputOperator.innerHTML = ''
     outputNum2.innerHTML = ''
 }
@@ -79,10 +89,15 @@ function multiply(x, y) {
     let outputOperator = document.querySelector('#calculatorOperatorText');
     let outputNum2 = document.querySelector('#calculatorSecondNumText');
 
-    x = parseInt(x)
-    y = parseInt(y)
+    x = parseFloat(x)
+    y = parseFloat(y)
+    let value = x * y
     
-    outputNum1.innerHTML = `${x * y}`
+    if (Number.isInteger(value)) {
+        outputNum1.innerHTML = `${value}`
+    } else {
+        outputNum1.innerHTML = `${value.toFixed(5)}`
+    }
     outputOperator.innerHTML = ''
     outputNum2.innerHTML = ''
 }
@@ -92,12 +107,25 @@ function divide(x, y) {
     let outputOperator = document.querySelector('#calculatorOperatorText');
     let outputNum2 = document.querySelector('#calculatorSecondNumText');
 
-    x = parseInt(x)
-    y = parseInt(y)
+    x = parseFloat(x)
+    y = parseFloat(y)
+
+    if (y === 0) {
+        outputNum1.innerHTML = 'undefined'
+        outputOperator.innerHTML = ''
+        outputNum2.innerHTML = ''
+    } else {
+        let value = x / y
     
-    outputNum1.innerHTML = `${x / y}`
-    outputOperator.innerHTML = ''
-    outputNum2.innerHTML = ''
+        if (Number.isInteger(value)) {
+            outputNum1.innerHTML = `${value}`
+        } else {
+            outputNum1.innerHTML = `${value.toFixed(5)}`
+        }
+        outputOperator.innerHTML = ''
+        outputNum2.innerHTML = ''
+    }
+    
 }
 
 function compute() {
@@ -109,9 +137,12 @@ function compute() {
     let outputOperator = document.querySelector('#calculatorOperatorText').innerHTML;
     let outputNum2 = document.querySelector('#calculatorSecondNumText').innerHTML;
     
-    outputValue.innerHTML = `${outputNum1} ${outputOperator} ${outputNum2}`
+    if (outputNum2 === '') {
 
+    } else {
+    outputValue.innerHTML = `${outputNum1} ${outputOperator} ${outputNum2}`
     operate(x, operator, y)
+    }
 
 }
 
@@ -138,18 +169,18 @@ function display(buttonValue) {
 
     // If the buttonValue is a digit (0-9) and no operator exists
     if ((buttonValue <= 9 && buttonValue >= 0) && displayOperator === '') {
-        if (displayNum1 === 0) {
+        if (displayNum1 === 0 || displayNum1 === "undefined") {
             displayNum1 = buttonValue
         } else {
             let newDisplayValue = displayNum1.toString() + buttonValue
-            displayNum1 = parseInt(newDisplayValue)
+            displayNum1 = parseFloat(newDisplayValue)
         }
         console.log(displayNum1)
         outputNum1.innerHTML = `${displayNum1}`
     }
 
     // If the buttonValue is an operator
-    else if (buttonValue === '+' || buttonValue === '-' || buttonValue === '*' || buttonValue === '/') {
+    else if ((buttonValue === '+' || buttonValue === '-' || buttonValue === '*' || buttonValue === '/') && displayNum1 != 'undefined') {
         // If second half of the expression exists
         if (outputNum2.innerHTML !== '') {
             compute()
@@ -166,7 +197,7 @@ function display(buttonValue) {
             displayNum2 = buttonValue
         } else {
             let newDisplayValue = displayNum2.toString() + buttonValue
-            displayNum2 = parseInt(newDisplayValue)
+            displayNum2 = parseFloat(newDisplayValue)
         }
         outputNum2.innerHTML = `${displayNum2}`
     }

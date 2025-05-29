@@ -17,66 +17,96 @@ document.addEventListener('DOMContentLoaded', function() {
         display(operatorValue)
         })
     }
+
+    // Add event listener to equal button
+    let equalButton = document.querySelector('.btn-equal')
+    equalButton.addEventListener('click', () => {
+        compute()
+    })
     
 });
 
 function operate(x, operator, y) {
-    if (operator === "+") {
+    if (operator === '+') {
         add(x, y);
     }
-    else if (operator === "-") {
+    else if (operator === '-') {
         subtract(x, y);
     }
-    else if (operator === "*") {
+    else if (operator === '*') {
         multiply(x, y)
     }
-    else if (operator === "/") {
+    else if (operator === '/') {
         divide(x, y);
     }
 }
 
 function add(x, y) {
+    x = parseInt(x)
+    y = parseInt(y)
     return x + y;
 }
 
 function subtract(x, y) {
+    x = parseInt(x)
+    y = parseInt(y)
     return x - y
 }
 
 function multiply(x, y) {
+    x = parseInt(x)
+    y = parseInt(y)
     return x * y
 }
 
 function divide(x, y) {
+    x = parseInt(x)
+    y = parseInt(y)
     return x / y
+}
+
+function compute() {
+    let x = document.querySelector('#calculatorFirstNumText').innerHTML;
+    let operator = document.querySelector('#calculatorOperatorText').innerHTML;
+    let y = document.querySelector('#calculatorSecondNumText').innerHTML;
+
+    operate(x, operator, y)
 }
 
 function display(buttonValue) {
     // Store the display div and button pressed
-    let outputDisplay = document.querySelector('#calculatorFirstNumText');
-    let displayContainer = document.querySelector('#calculatorDisplayBottom')
-    let displayValue = document.querySelector('#calculatorFirstNumText').innerHTML;
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let displayNum1 = document.querySelector('#calculatorFirstNumText').innerHTML;
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let displayOperator = document.querySelector('#calculatorOperatorText').innerHTML;
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+    let displayNum2 = document.querySelector('#calculatorSecondNumText').innerHTML;
 
     // If the buttonValue is a digit (0-9) and no operator exists
-    if (buttonValue <= 9 && buttonValue >= 0) {
-        if (displayValue === 0) {
-            displayValue = buttonValue
+    if ((buttonValue <= 9 && buttonValue >= 0) && displayOperator === '') {
+        if (displayNum1 === 0) {
+            displayNum1 = buttonValue
         } else {
-            let newDisplayValue = displayValue.toString() + buttonValue
-            displayValue = parseInt(newDisplayValue)
+            let newDisplayValue = displayNum1.toString() + buttonValue
+            displayNum1 = parseInt(newDisplayValue)
         }
-        console.log(displayValue)
-        outputDisplay.innerHTML = `${displayValue}`
+        console.log(displayNum1)
+        outputNum1.innerHTML = `${displayNum1}`
     }
 
     // If the buttonValue is an operator
     else if (buttonValue === '+' || buttonValue === '-' || buttonValue === '*' || buttonValue === '/') {
-        let operatorValue = document.createElement('span')
-        operatorValue.innerHTML = `${buttonValue}`
-        displayContainer.appendChild(operatorValue)
+        outputOperator.innerHTML = `${buttonValue}`
     }
     
     // If buttonValue is a digit (0-9) and an operator exists
-
-
+    else if ((buttonValue <= 9 && buttonValue >= 0) && displayOperator !== '') {
+        if (displayNum2 === 0) {
+            displayNum2 = buttonValue
+        } else {
+            let newDisplayValue = displayNum2.toString() + buttonValue
+            displayNum2 = parseInt(newDisplayValue)
+        }
+        outputNum2.innerHTML = `${displayNum2}`
+    }
 }

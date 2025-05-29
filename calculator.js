@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
         display(digitValue)
         })
-    }
+    };
 
     // Add event listener to operator buttons
     let operatorButtons = document.querySelectorAll('.btn-operator');
@@ -16,13 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
         display(operatorValue)
         })
-    }
+    };
 
     // Add event listener to equal button
     let equalButton = document.querySelector('.btn-equal')
     equalButton.addEventListener('click', () => {
         compute()
-    })
+    });
+
+    // Add event listener to clear button
+    let clearButton = document.querySelector('.btn-clear')
+    clearButton.addEventListener('click', () => {
+        clear()
+    });
     
 });
 
@@ -42,35 +48,71 @@ function operate(x, operator, y) {
 }
 
 function add(x, y) {
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+
     x = parseInt(x)
     y = parseInt(y)
-    return x + y;
+    
+    outputNum1.innerHTML = `${x + y}`
+    outputOperator.innerHTML = ''
+    outputNum2.innerHTML = ''
+    
 }
 
 function subtract(x, y) {
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+
     x = parseInt(x)
     y = parseInt(y)
-    return x - y
+    
+    outputNum1.innerHTML = `${x - y}`
+    outputOperator.innerHTML = ''
+    outputNum2.innerHTML = ''
 }
 
 function multiply(x, y) {
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+
     x = parseInt(x)
     y = parseInt(y)
-    return x * y
+    
+    outputNum1.innerHTML = `${x * y}`
+    outputOperator.innerHTML = ''
+    outputNum2.innerHTML = ''
 }
 
 function divide(x, y) {
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+
     x = parseInt(x)
     y = parseInt(y)
-    return x / y
+    
+    outputNum1.innerHTML = `${x / y}`
+    outputOperator.innerHTML = ''
+    outputNum2.innerHTML = ''
 }
 
 function compute() {
     let x = document.querySelector('#calculatorFirstNumText').innerHTML;
     let operator = document.querySelector('#calculatorOperatorText').innerHTML;
     let y = document.querySelector('#calculatorSecondNumText').innerHTML;
+    let outputValue = document.querySelector('#calculatorReturnText');
+    let outputNum1 = document.querySelector('#calculatorFirstNumText').innerHTML;
+    let outputOperator = document.querySelector('#calculatorOperatorText').innerHTML;
+    let outputNum2 = document.querySelector('#calculatorSecondNumText').innerHTML;
+    
+    outputValue.innerHTML = `${outputNum1} ${outputOperator} ${outputNum2}`
 
     operate(x, operator, y)
+
 }
 
 function display(buttonValue) {

@@ -82,7 +82,7 @@ body {
     background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
 
-.btn-primary, .btn-operator {
+.btn-primary, .btn-operator, .btn-clear {
     font-size: 18px;
     height: 100%;
     width: 100%;
@@ -92,7 +92,7 @@ body {
     color: black;
 }
 
-.btn-primary:hover, .btn-operator:hover {
+.btn-primary:hover, .btn-operator:hover, .btn-clear:hover {
     background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
 

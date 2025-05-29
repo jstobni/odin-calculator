@@ -115,6 +115,18 @@ function compute() {
 
 }
 
+function clear() {
+    let outputNum1 = document.querySelector('#calculatorFirstNumText');
+    let outputOperator = document.querySelector('#calculatorOperatorText');
+    let outputNum2 = document.querySelector('#calculatorSecondNumText');
+    let outputValue = document.querySelector('#calculatorReturnText');
+
+    outputNum1.innerHTML = ''
+    outputOperator.innerHTML = ''
+    outputNum2.innerHTML = ''
+    outputValue.innerHTML = ''
+}
+
 function display(buttonValue) {
     // Store the display div and button pressed
     let outputNum1 = document.querySelector('#calculatorFirstNumText');
@@ -138,7 +150,14 @@ function display(buttonValue) {
 
     // If the buttonValue is an operator
     else if (buttonValue === '+' || buttonValue === '-' || buttonValue === '*' || buttonValue === '/') {
-        outputOperator.innerHTML = `${buttonValue}`
+        // If second half of the expression exists
+        if (outputNum2.innerHTML !== '') {
+            compute()
+            outputOperator.innerHTML = `${buttonValue}`
+        }
+        else {
+            outputOperator.innerHTML = `${buttonValue}`
+        } 
     }
     
     // If buttonValue is a digit (0-9) and an operator exists
